@@ -1,6 +1,6 @@
 ## OVERVIEW 
 The KPS Examination Portal is a secure, web-based examination system designed for educational institutions and certification bodies. Built with modern web technologies, it provides a robust platform for conducting online examinations with advanced security features and comprehensive assessment capabilities.
-Key Highlights
+### Key Highlights
 🔒 Secure Examination Environment
 
 📝 Automated Assessment System
@@ -12,7 +12,7 @@ Key Highlights
 ⏱️ Time-Managed Examinations
 
 ✨ Features
-🎓 Student Features
+## 🎓 Student Features
 Account Registration & Management
 
 Create personal student account
@@ -39,7 +39,7 @@ Download professional certificates
 
 Track assessment status
 
-👨‍💼 Administrator Features
+## 👨‍💼 Administrator Features
 Exam Management
 
 Upload examination papers (PDF)
@@ -66,7 +66,7 @@ Manage certificate eligibility
 
 Track certificate status
 
-🔒 Security Features
+##  Security Features
 Screenshot Prevention - Disables screen capture attempts
 
 Time-Limited Access - Automatic session expiration
@@ -75,7 +75,7 @@ Role-Based Access Control - Secure separation of privileges
 
 Session Management - Secure authentication system
 
-👥 User Roles
+## 👥 User Roles
 Student
 Access examination materials
 
@@ -120,34 +120,14 @@ File Validation: Secure file upload handling
 
 Input Sanitization: Form data validation
 
- Technical Details
+ ## Technical Details
 Architecture
 Frontend: Pure HTML5, CSS3, JavaScript (ES6+)
 
 Storage: Browser LocalStorage for session management
 
-Styling: Custom CSS with Amber color theme
 
-PDF Handling: Native browser PDF viewer
-
-File Structure
-text
-kps-examination-portal/
-├── index.html              # Main application file
-├── README.md              # Documentation
-└── assets/               # Additional resources (if any)
-    ├── images/           # Brand assets
-    └── fonts/            # Custom typography
-Key Technologies
-HTML5: Semantic structure and accessibility
-
-CSS3: Responsive design with CSS Grid/Flexbox
-
-JavaScript: ES6+ for application logic
-
-LocalStorage: Client-side data persistence
-
- Troubleshooting
+ ## Troubleshooting
 Common Issues
 Login Problems
 Issue: Unable to login with correct credentials
