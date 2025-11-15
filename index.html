@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPS Examination Portal</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>KPS Examination Portal</h1>
+        </div>
+        <div class="user-info" id="user-info" style="display: none;">
+            <span>Welcome, <span id="username">User</span></span>
+            <div class="role-badge" id="role-badge">Student</div>
+            <button class="switch-role-btn" id="switch-role-btn">Switch Role</button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Login/Register Section -->
+        <div id="auth-section" class="card login-form">
+            <h2>KPS Examination Portal</h2>
+            <p>Access your account to continue</p>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-tab" class="auth-content">
+                <div class="role-selector">
+                    <button class="role-btn active" data-role="student">Student</button>
+                    <button class="role-btn" data-role="admin">Admin</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                </div>
+                <button id="login-btn">Login</button>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="register-tab" class="auth-content" style="display: none;">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" placeholder="Confirm your password">
+                </div>
+                <div class="form-group">
+                    <label for="register-student-id">Student ID</label>
+                    <input type="text" id="register-student-id" placeholder="Enter your student ID">
+                </div>
+                <div class="form-group">
+                    <label for="register-course">Course/Program</label>
+                    <input type="text" id="register-course" placeholder="Enter your course">
+                </div>
+                <button id="register-btn">Create Account</button>
+            </div>
+        </div>
+        
+        <!-- Exam Content Section -->
+        <div id="exam-section" class="exam-content">
+            <!-- Profile Section for Students -->
+            <div class="profile-section">
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <div class="profile-avatar" id="profile-avatar">
+                            <!-- Student image will be displayed here -->
+                        </div>
+                        <div class="profile-details">
+                            <div class="profile-name" id="student-name">Student User</div>
+                            <div class="profile-role" id="student-role">Student Account</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="profile-switch-btn" id="student-switch-btn">Switch to Admin</button>
+                        <button class="profile-logout-btn" id="student-logout-btn">Logout</button>
+                    </div>
+                </div>
+                <div class="profile-status">
+                    <p>You are currently logged in as a student. Exam time remaining: <span id="profile-timer">02:00:00</span></p>
+                </div>
+            </div>
+            
+            <div class="timer" id="timer">Time Remaining: 02:00:00</div>
+            
+            <div class="card">
+                <h2>Examination Paper</h2>
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="exam">Examination</div>
+                        <div class="tab" data-tab="submit-answers">Submit Answers</div>
+                        <div class="tab" data-tab="results">Results</div>
+                        <div class="tab" data-tab="certificate">Certificate</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="exam-tab">
+                        <p>Please read the examination paper carefully and answer all questions.</p>
+                        <div class="upload-area">
+                            <p>Examination paper will appear here once uploaded by admin</p>
+                            <iframe id="pdf-viewer" class="pdf-viewer" src=""></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="submit-answers-tab">
+                        <h3>Submit Your Answers</h3>
+                        <p>Please fill in your details and upload your answer files in any format (PDF, JPG, PNG, DOC, etc.)</p>
+                        
+                        <!-- Student Information Form -->
+                        <div class="student-form">
+                            <h4>Student Information</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="student-fullname">Full Name</label>
+                                    <input type="text" id="student-fullname" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student-email">Email Address</label>
+                                    <input type="email" id="student-email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="student-id">Student ID</label>
+                                    <input type="text" id="student-id" placeholder="Enter your student ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student-course">Course/Program</label>
+                                    <input type="text" id="student-course" placeholder="Enter your course" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-job">Current Job/Position</label>
+                                <input type="text" id="student-job" placeholder="Enter your current job or position">
+                            </div>
+                            <div class="form-group">
+                                <label for="student-photo">Upload Photo for Certificate</label>
+                                <input type="file" id="student-photo" accept="image/*">
+                                <small>This photo will be used on your certificate upon successful completion</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-notes">Additional Notes</label>
+                                <textarea id="student-notes" rows="3" placeholder="Any additional information..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-area" id="answer-upload-area">
+                            <p>Drag & drop your answer files here or click to browse</p>
+                            <input type="file" id="answer-upload" multiple style="display: none;">
+                            <button id="browse-answers-btn" class="btn-secondary">Browse Files</button>
+                        </div>
+                        
+                        <div class="uploaded-files" id="uploaded-answers">
+                            <!-- Uploaded files will appear here -->
+                        </div>
+                        
+                        <div class="submission-status not-submitted" id="submission-status">
+                            Answers not submitted yet
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="submit-answers-btn">Submit Answers</button>
+                            <button id="clear-answers-btn" class="btn-secondary">Clear All</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="results-tab">
+                        <h3>Your Examination Results</h3>
+                        <p>Results will be displayed here once they are uploaded by the administrator.</p>
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Score</th>
+                                    <th>Grade</th>
+                                    <th>Remarks</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-body">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tab-content" id="certificate-tab">
+                        <h3>Certificate of Completion</h3>
+                        <p>Your certificate will be available here once you have successfully completed the examination and been assessed by the administrator.</p>
+                        
+                        <div class="certificate-section" id="certificate-section">
+                            <div class="certificate">
+                                <div class="certificate-header">
+                                    <div class="certificate-title">Certificate of Completion</div>
+                                    <div class="certificate-subtitle">KPS Web Solutions Examination Portal</div>
+                                </div>
+                                <div class="certificate-body">
+                                    <p>This is to certify that</p>
+                                    <div class="certificate-name" id="certificate-name">Student Name</div>
+                                    <p>has successfully completed the</p>
+                                    <div class="certificate-details">
+                                        <p><strong>Examination:</strong> <span id="certificate-exam">Professional Certification Exam</span></p>
+                                        <p><strong>Score:</strong> <span id="certificate-score">85%</span></p>
+                                        <p><strong>Grade:</strong> <span id="certificate-grade">A</span></p>
+                                        <p><strong>Date of Completion:</strong> <span id="certificate-date">January 1, 2023</span></p>
+                                    </div>
+                                </div>
+                                <div class="certificate-footer">
+                                    <div class="certificate-signature">
+                                        <div class="signature-line"></div>
+                                        <p>Administrator</p>
+                                        <p>KPS Web Solutions</p>
+                                    </div>
+                                    <div class="certificate-signature">
+                                        <div class="profile-avatar" id="certificate-photo">
+                                            <!-- Student photo will appear here -->
+                                        </div>
+                                        <p>Student Photo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="download-certificate" class="btn-secondary">Download Certificate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Admin Dashboard -->
+        <div id="admin-section" class="admin-dashboard card">
+            <!-- Admin Profile Section -->
+            <div class="profile-section">
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <div class="profile-avatar" id="admin-profile-avatar">A</div>
+                        <div class="profile-details">
+                            <div class="profile-name" id="admin-name">Administrator</div>
+                            <div class="profile-role" id="admin-role">Admin Account</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="profile-switch-btn" id="admin-switch-btn">Switch to Student</button>
+                        <button class="profile-logout-btn" id="admin-logout-btn">Logout</button>
+                    </div>
+                </div>
+                <div class="profile-status">
+                    <p>You are currently logged in as an administrator with full system access.</p>
+                </div>
+            </div>
+            
+            <h2>Admin Dashboard</h2>
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="upload">Upload Exam</div>
+                    <div class="tab" data-tab="submissions">Student Submissions</div>
+                    <div class="tab" data-tab="assess">Assess Submissions</div>
+                    <div class="tab" data-tab="manage-results">Manage Results</div>
+                    <div class="tab" data-tab="certificates">Issue Certificates</div>
+                    <div class="tab" data-tab="settings">Settings</div>
+                </div>
+                
+                <div class="tab-content active" id="upload-tab">
+                    <h3>Upload Examination Paper</h3>
+                    <div class="upload-area" id="upload-area">
+                        <p>Drag & drop your PDF file here or click to browse</p>
+                        <input type="file" id="pdf-upload" accept=".pdf" style="display: none;">
+                        <button id="browse-btn" class="btn-secondary">Browse Files</button>
+                    </div>
+                    <div id="upload-status"></div>
+                </div>
+                
+                <div class="tab-content" id="submissions-tab">
+                    <h3>Student Answer Submissions</h3>
+                    <table class="submissions-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Course</th>
+                                <th>Submission Time</th>
+                                <th>Files</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="submissions-body">
+                            <!-- Submissions will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="tab-content" id="assess-tab">
+                    <h3>Assess Student Submissions</h3>
+                    <div id="assessment-list">
+                        <!-- Assessment items will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="manage-results-tab">
+                    <h3>Manage Student Results</h3>
+                    <div class="form-group">
+                        <label for="admin-student-id">Student ID</label>
+                        <input type="text" id="admin-student-id" placeholder="Enter student ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="student-score">Score</label>
+                        <input type="number" id="student-score" placeholder="Enter score" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="student-remarks">Remarks</label>
+                        <textarea id="student-remarks" placeholder="Enter remarks"></textarea>
+                    </div>
+                    <button id="add-result-btn">Add/Update Result</button>
+                    
+                    <h4 style="margin-top: 2rem;">All Results</h4>
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Grade</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-results-body">
+                            <!-- Admin results will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="tab-content" id="certificates-tab">
+                    <h3>Issue Certificates</h3>
+                    <p>Select students who have passed the examination to issue certificates.</p>
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Grade</th>
+                                <th>Certificate Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="certificates-body">
+                            <!-- Certificates will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="tab-content" id="settings-tab">
+                    <h3>System Settings</h3>
+                    <div class="form-group">
+                        <label for="exam-duration">Examination Duration (minutes)</label>
+                        <input type="number" id="exam-duration" value="120" min="30" max="300">
+                    </div>
+                    <div class="form-group">
+                        <label for="passing-score">Passing Score (%)</label>
+                        <input type="number" id="passing-score" value="60" min="0" max="100">
+                    </div>
+                    <button id="save-settings">Save Settings</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Expired Card -->
+        <div id="expired-card" class="expired-card card">
+            <h2>Examination time has elapsed!!</h2>
+            <p>Please contact your instructor for more information ___ KPS</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>KPS Web Solutions &copy; 2025 | Secure Examination Portal</p>
+    </footer>
+    
+    <!-- Screenshot Attempt Notification -->
+    <div id="screenshot-notification" class="notification">
+        KPS disabled taking Screenshots for a mean time
+    </div>
+    
+    
+    <script src="./exams.js"></script>
+</body>
+</html>
